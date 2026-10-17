@@ -1,38 +1,32 @@
-# Credit Risk Scoring & $55.2bn Portfolio Dashboard
+# Credit Risk Scoring & $55.2bn Expected Loss Dashboard
 
-> End-to-end credit risk model: 307k loans, Logistic Regression, Expected Loss = PD * LGD * EAD
+End-to-end credit risk model: 307k loans, Logistic Regression, Power BI | PD * LGD * EAD
 
-### Business Problem
+## Business Problem
 Bank needs to quantify risk on $55.2bn loan portfolio and price loans by risk tier.
 
-### Key Results (from your dashboard)
-- **Total Exposure:** $55.20bn
-- **Total Expected Loss:** $1.88bn
-- **Avg Probability of Default:** 8.1%
-- **High Risk Tier:** 52.7% PD, $0.11bn exposure
+## Key Results (from Power BI)
+- Total Exposure: $55.20bn
+- Total Expected Loss: $1.88bn
+- Avg PD: 8.1%, High Risk Tier: 52.7% PD, $1.19bn exposure
 
-### Model Performance
-- Model: Logistic Regression (glm)
-- Accuracy: 91.9%
+## Model
+- Logistic Regression (glm)
+- Accuracy: 91.9% at 0.3 threshold
 - AUC: 0.76
-- Target: TARGET (1 = default)
+- Formula: Expected Loss = PD * LGD (0.45) * EAD (AMT_CREDIT)
 
-### Data Cleaning - R
-- `01_data_cleaning.R`: Missing values, Age Group, DAYS_BIRTH to Age
-- `02_credit_risk_metrics.R`: PD prediction, Expected_Loss = PD * 0.6 * AMT_CREDIT, Risk_Tier (Low/Med/High)
-- `03_logistic_model.R`: glm, confusion matrix, AUC
+## Files
+- R/ - 3 scripts (cleaning, risk metrics, model)
+- dashboard/screenshots/ - Power BI dashboard
+- data/ - sample scored_loan_portfolio.csv (first 1k rows only - no PII)
 
-### Dashboard - Power BI
-- KPIs: Total Credit, Expected Loss, Avg PD, High Risk Share
-- Charts: Expected Loss by Risk Tier, TARGET by Age Group
-- Table: Loan Details with SK_ID_CURR, PD, Expected Loss, Risk Badge
+## How to Run
+1. R: Run R/01 -> 02 -> 03
+2. Power BI: Open dashboard/Credit_Risk_Dashboard.pbix
+3. Output: scored_loan_portfolio.csv with PD, EAD, Expected_Loss, Risk_Tier
 
-### Tech Stack
-R (tidyverse, caret, pROC), Power BI, DAX
+## Tech Stack
+R, Logistic Regression, Power BI, DAX, pROC, caret
 
-### Files
-- `/R` - 3 R scripts
-- `/dashboard` - .pbix + screenshot
-- `/data` - 1k sample (full data: [Kaggle Home Credit](https://www.kaggle.com/c/home-credit-default-risk))
-
-![Dashboard](dashboard/screenshots/dashboard_final.png)
+Author: AweXpress | LinkedIn: [add link]
