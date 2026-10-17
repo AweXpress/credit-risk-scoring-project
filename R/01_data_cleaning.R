@@ -1,17 +1,28 @@
-# 01_data_cleaning.R - Home Credit Risk
-library(tidyverse)
+# 01_data_cleaning.R
+application_train <- read.csv("application_data.csv")
 
-# Load data
-df <- read.csv("application_data.csv")
+dim(application_train)
+head(application_train)
+table(application_train$TARGET)
 
-# Handle missing values, create Age Group
-df <- df %>%
-  mutate(
-    Age = -DAYS_BIRTH / 365,
-    Age_Group = cut(Age, breaks=c(20,30,40,50,60,70), 
-                    labels=c("20-29","30-39","40-49","50-59","60+"))
-  ) %>%
-  filter(!is.na(AMT_CREDIT))
+missing_pct <- colMeans(is.na(application_train))*100
+missing_pct[missing_pct > 0]
+sort(missing_pct[missing_pct > 0], decreasing = TRUE)
+
+keep_cols <- names(missing_pct[missing_pct < 50])
+clean_data <- application_train[, keep_cols]
+dim(clean_data)
+
+for (col in names(clean_data)) {
+  if (any(is.na(clean_data[[col]]))){
+    if (is.numeric(clean_data[[col]])){
+      clean_data[[col]][is.na(clean_data[[col]])] <- median(clean_data[[col]], na.rm = TRUE)
+    } else {
+      clean_data[[col]][is.na(clean_data[[col]])] <- names(sort(table(clean_data[[col]]), decreasing = TRUE))[1]
+    }
+  }
+}
+sum(is.na(clean_data))
 
 # Save cleaned
-write.csv(df, "cleaned_data.csv", row.names=FALSE)
+write.csv(clean_data, "cleaned_data.csv", row.names=FALSE)
