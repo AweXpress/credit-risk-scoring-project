@@ -13,4 +13,26 @@ Bank needs to quantify risk on $55.2bn loan portfolio and price loans by risk ti
 
 ### Model Performance
 - Model: Logistic Regression (glm)
-- Accuracy: 91.
+- Accuracy: 91.9%
+- AUC: 0.76
+- Target: TARGET (1 = default)
+
+### Data Cleaning - R
+- `01_data_cleaning.R`: Missing values, Age Group, DAYS_BIRTH to Age
+- `02_credit_risk_metrics.R`: PD prediction, Expected_Loss = PD * 0.6 * AMT_CREDIT, Risk_Tier (Low/Med/High)
+- `03_logistic_model.R`: glm, confusion matrix, AUC
+
+### Dashboard - Power BI
+- KPIs: Total Credit, Expected Loss, Avg PD, High Risk Share
+- Charts: Expected Loss by Risk Tier, TARGET by Age Group
+- Table: Loan Details with SK_ID_CURR, PD, Expected Loss, Risk Badge
+
+### Tech Stack
+R (tidyverse, caret, pROC), Power BI, DAX
+
+### Files
+- `/R` - 3 R scripts
+- `/dashboard` - .pbix + screenshot
+- `/data` - 1k sample (full data: [Kaggle Home Credit](https://www.kaggle.com/c/home-credit-default-risk))
+
+![Dashboard](dashboard/screenshots/dashboard_final.png)
