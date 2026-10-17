@@ -29,4 +29,4 @@ Bank needs to quantify risk on $55.2bn loan portfolio and price loans by risk ti
 ## Tech Stack
 R, Logistic Regression, Power BI, DAX, pROC, caret
 
-Author: AweXpress | LinkedIn: [add link]
+Author: AweExpress | LinkedIn:(https://www.linkedin.com/in/temitope-awe-79a75b1a9/)
