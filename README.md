@@ -1,2 +1,4 @@
 # credit-risk-scoring-project
-End-to-end Credit Risk Scoring model (91.9% accuracy) + $55.2bn Portfolio Dashboard | R, Logistic Regression, Power BI | PD, LGD, Expected Loss
+Built credit risk scoring for Home Credit 307k loans. Predicted Probability of Default using logistic regression and built a portfolio dashboard tracking $55.2bn exposure.
+
+Key Results: $1.88bn Expected Loss | 8.1% Avg PD | High Risk Tier 52.7% PD
